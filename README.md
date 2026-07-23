@@ -29,8 +29,22 @@ node scripts/shots.mjs shots --mobile # 모바일
 
 ## 배포
 
-`main` 브랜치 푸시 시 GitHub Actions가 자동으로 GitHub Pages에 배포합니다
-(`.github/workflows/deploy.yml`, `NEXT_PUBLIC_BASE_PATH=/DEEPRED-HOME`).
+**현재 방식**: `gh-pages` 브랜치 직접 배포 → https://taehyeung123.github.io/DEEPRED-HOME/
+
+```bash
+bash scripts/deploy-pages.sh
+```
+
+**자동 배포(권장, 설정 필요)**: `docs/github-pages-workflow.yml`을
+`.github/workflows/deploy.yml`로 옮겨 커밋하면 main 푸시마다 자동 배포됩니다.
+단, 현재 GitHub CLI 토큰에 `workflow` 스코프가 없어 워크플로 파일 푸시가 거부되므로
+먼저 아래를 실행해 스코프를 추가해야 합니다 (브라우저 인증 필요):
+
+```bash
+gh auth refresh -h github.com -s workflow
+```
+
+그 후 저장소 Settings → Pages → Source를 "GitHub Actions"로 변경하세요.
 
 커스텀 도메인(예: `deepred.ai`) 연결 시:
 1. Pages 설정에서 도메인 추가
@@ -55,7 +69,7 @@ node scripts/shots.mjs shots --mobile # 모바일
 - [ ] **로드맵 일정 확인** — "2026 하반기 정식 출시" 등은 추정 기재입니다
 - [ ] **연락 이메일 확인** — 현재 rnjsxogud2165@gmail.com. 회사 공식 메일 생기면 교체
 - [ ] **(주)딥레드 법인 설립 후** — 푸터의 "설립 예정" 문구를 사업자등록번호 포함 정식 표기로 교체
-- [ ] **GitHub Pages 활성화 확인** — 저장소 Settings → Pages → Source가 "GitHub Actions"인지 확인 (아니면 첫 배포가 실패합니다)
+- [ ] **자동 배포 전환(선택)** — `gh auth refresh -h github.com -s workflow`로 토큰 스코프 추가 후 `docs/github-pages-workflow.yml`을 `.github/workflows/deploy.yml`로 이동·커밋, Pages Source를 "GitHub Actions"로 변경
 - [ ] (선택) BGM — 현재 사운드는 전량 프로시저럴 합성입니다. 라이선스 음원을 쓰려면 `src/lib/audio.ts`에 스트리밍 재생 추가
 
 © 2026 DEEPRED. (주)딥레드 — 2026년 8월 법인 설립 예정.

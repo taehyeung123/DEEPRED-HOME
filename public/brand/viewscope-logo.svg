@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40" fill="none">
+  <g transform="translate(0 3)">
+    <g transform="rotate(-8 17 18)">
+      <path
+        d="M9.5 9.2 Q8.2 5.8 12 6.8 L23.5 11 Q26.6 12.2 25.6 15.4 L20.4 28.2 Q19.1 31.4 16.1 30 Q13.5 28.8 12.9 25.8 Z"
+        fill="#1DB886"
+      />
+    </g>
+    <circle cx="15.6" cy="12.6" r="3.1" fill="#FFFFFF" />
+  </g>
+  <text
+    x="46"
+    y="27"
+    font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif"
+    font-size="26"
+    font-weight="800"
+    letter-spacing="-0.3"
+    fill="#1A1C1E"
+  >viewscope</text>
+</svg>

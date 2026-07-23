@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" role="img" aria-label="DEEPRED 심볼">
+  <defs>
+    <linearGradient id="dr-g" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#FF4155"/>
+      <stop offset="0.55" stop-color="#E8102E"/>
+      <stop offset="1" stop-color="#8F0018"/>
+    </linearGradient>
+    <linearGradient id="dr-edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF8A94"/>
+      <stop offset="1" stop-color="#C40024"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 3 L57 21.5 L32 61 L7 21.5 Z" fill="url(#dr-g)"/>
+  <path d="M32 3 L57 21.5 L32 30.5 L7 21.5 Z" fill="url(#dr-edge)" opacity="0.35"/>
+  <path d="M32 16.5 L45.5 25.5 L32 47 L18.5 25.5 Z" fill="#0A0A0F"/>
+  <path d="M32 25 L38.8 29.6 L32 40.5 L25.2 29.6 Z" fill="url(#dr-g)"/>
+  <path d="M32 25 L38.8 29.6 L32 33 L25.2 29.6 Z" fill="#FF6B78" opacity="0.6"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" width="600" height="128" role="img" aria-label="DEEPRED 로고">
+  <defs>
+    <linearGradient id="drw-g" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#FF4155"/>
+      <stop offset="0.55" stop-color="#E8102E"/>
+      <stop offset="1" stop-color="#8F0018"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(10 8) scale(0.75)">
+    <path d="M32 3 L57 21.5 L32 61 L7 21.5 Z" fill="url(#drw-g)"/>
+    <path d="M32 16.5 L45.5 25.5 L32 47 L18.5 25.5 Z" fill="#0A0A0F"/>
+    <path d="M32 25 L38.8 29.6 L32 40.5 L25.2 29.6 Z" fill="url(#drw-g)"/>
+  </g>
+  <text x="66" y="43" font-family="'Arial Black', 'Malgun Gothic', sans-serif" font-size="30" font-weight="900" letter-spacing="2" fill="#F7F8FA">DEEP<tspan fill="#E8102E">RED</tspan></text>
+</svg>

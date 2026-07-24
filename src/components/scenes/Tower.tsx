@@ -178,6 +178,9 @@ export default function Tower() {
     []
   );
 
+  // material은 deps 없는 useMemo라 불변 — ref 초기값으로만 캡처
+  const matRef = useRef(material);
+
   useEffect(() => () => material.dispose(), [material]);
 
   useFrame((state) => {
@@ -187,11 +190,12 @@ export default function Tower() {
     g.visible = visible;
     if (!visible) return;
     const t = state.clock.elapsedTime;
-    material.uniforms.uTime.value = t;
-    material.uniforms.uReveal.value = cine.towerReveal;
-    material.uniforms.uActivation.value = cine.activation;
-    material.uniforms.uConverge.value = cine.converge;
-    material.uniforms.uCamPos.value.copy(state.camera.position);
+    const m = matRef.current;
+    m.uniforms.uTime.value = t;
+    m.uniforms.uReveal.value = cine.towerReveal;
+    m.uniforms.uActivation.value = cine.activation;
+    m.uniforms.uConverge.value = cine.converge;
+    m.uniforms.uCamPos.value.copy(state.camera.position);
 
     if (beacon.current) {
       const s = 1 + Math.sin(t * 3.2) * 0.25;

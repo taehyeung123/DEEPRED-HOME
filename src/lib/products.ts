@@ -13,6 +13,8 @@ export type Product = {
   accent: string;
   accentDim: string;
   mark: string;
+  /** 파티클 실루엣 샘플링용 (불투명 배경 아이콘일 때 투명 배경 변형 지정) */
+  silhouette?: string;
   /** 파티클 버스트 패턴 */
   burst: "rise" | "murmuration" | "aperture";
   floorY: number;
@@ -30,7 +32,8 @@ export const PRODUCTS: Product[] = [
     sub: "키워드 발굴부터 상위노출 설계까지 — AI 블로그 SEO 엔진",
     accent: "#FF3B4E",
     accentDim: "#7a0e1c",
-    mark: `${BASE}/brand/redrank-mark.svg`,
+    mark: `${BASE}/brand/redrank-icon-neon.svg`,
+    silhouette: `${BASE}/brand/redrank-silhouette.svg`,
     burst: "rise",
     floorY: 46,
   },

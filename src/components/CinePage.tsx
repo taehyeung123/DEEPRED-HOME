@@ -47,7 +47,7 @@ function useLoader(canvasReadyRef: React.RefObject<(() => void) | null>) {
 
     document.fonts.ready.then(() => bump(30));
     PRODUCTS.forEach((p) => {
-      sampleLogoPoints(p.mark, q.particleCount, 11).then(() => bump(15));
+      sampleLogoPoints(p.silhouette ?? p.mark, q.particleCount, 11).then(() => bump(15));
     });
     canvasReadyRef.current = () => bump(25);
 
@@ -180,10 +180,10 @@ export default function CinePage() {
         gsap.set(q("[data-flash]"), { opacity: 0 });
         // 힌트는 아직 최상단일 때만 — 이미 스크롤해 내려갔다면 켜지 않는다
         const targets =
-          cine.progress < 0.02
+          cine.progress < 0.015
             ? "[data-intro-tag], [data-scroll-hint], [data-hud]"
             : "[data-intro-tag], [data-hud]";
-        gsap.to(q(targets), { autoAlpha: 1, y: 0, duration: 0.5 });
+        gsap.to(q(targets), { autoAlpha: 1, y: 0, duration: 0.5, overwrite: true });
       }
       document.body.style.overflow = "";
       lenis.start();
@@ -234,7 +234,16 @@ export default function CinePage() {
         { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out" },
         4.25
       )
-      .to(q("[data-scroll-hint]"), { autoAlpha: 1, duration: 0.8 }, 4.6)
+      // 힌트는 여전히 최상단일 때만 노출 — overwrite로 경합 트윈 제거
+      .call(
+        () => {
+          if (cine.progress < 0.015) {
+            gsap.to(q("[data-scroll-hint]"), { autoAlpha: 1, duration: 0.8, overwrite: true });
+          }
+        },
+        undefined,
+        4.6
+      )
       .to(q("[data-hud]"), { autoAlpha: 1, duration: 0.8 }, 4.6);
 
     const skip = () => finishIntro();
@@ -257,6 +266,7 @@ export default function CinePage() {
       return (tl.scrollTrigger?.direction ?? 1) >= 0;
     }
     let lastIntensity = -1;
+    let hintShown: boolean | null = null;
     const tl = gsap.timeline({
       defaults: { ease: N },
       scrollTrigger: {
@@ -266,6 +276,16 @@ export default function CinePage() {
         scrub: 1.1,
         onUpdate: (self) => {
           cine.progress = self.progress;
+          // 스크롤 힌트: 상태 파생 + overwrite — 어떤 트윈과도 경합하지 않음
+          const wantHint = introDoneRef.current && self.progress < 0.015;
+          if (wantHint !== hintShown) {
+            hintShown = wantHint;
+            gsap.to(q("[data-scroll-hint]"), {
+              autoAlpha: wantHint ? 1 : 0,
+              duration: 0.5,
+              overwrite: true,
+            });
+          }
           // 씬 라벨
           const hit = SCENE_LABELS.find(
             ([a, b]) => self.progress >= a && self.progress < b
@@ -291,9 +311,6 @@ export default function CinePage() {
     tl.fromTo(cine, { fly: 0 }, { fly: 34, duration: 15, immediateRender: false }, 0)
       .fromTo(cine, { cloudPart: 0 }, { cloudPart: 1.3, duration: 12, immediateRender: false }, 1.5)
       .to(q("[data-intro-screen]"), { autoAlpha: 0, scale: 1.55, duration: 5, ease: "power2.in" }, 0)
-      .fromTo(q("[data-scroll-hint]"), { autoAlpha: 1 }, { autoAlpha: 0, duration: 1.5, immediateRender: false }, 0)
-      // 인트로 완주 타이밍과의 레이스 방지: 다이브 이후엔 힌트 강제 숨김
-      .set(q("[data-scroll-hint]"), { autoAlpha: 0 }, 3.2)
       .fromTo(q("[data-vignette]"), { opacity: 0 }, { opacity: 0.8, duration: 6, immediateRender: false }, 2)
       .to(q("[data-vignette]"), { opacity: 0, duration: 6 }, 12)
       .call(() => { if (fwd()) audio.whoosh(1.2); }, undefined, 1.2)

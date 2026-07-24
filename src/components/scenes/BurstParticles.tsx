@@ -170,7 +170,7 @@ export default function BurstParticles() {
   useEffect(() => {
     let alive = true;
     PRODUCTS.forEach((p, i) => {
-      sampleLogoPoints(p.mark, N, 11).then((arr) => {
+      sampleLogoPoints(p.silhouette ?? p.mark, N, 11).then((arr) => {
         if (alive) targetsRef.current[i] = arr;
       });
     });

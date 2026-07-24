@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="2048" height="2048">
+  <defs>
+    <linearGradient id="plaque" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c0c0f"/>
+      <stop offset="50%" style="stop-color:#08080a"/>
+      <stop offset="100%" style="stop-color:#111114"/>
+    </linearGradient>
+    <radialGradient id="ambient" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" style="stop-color:#ff2b4d" stop-opacity="0.5"/>
+      <stop offset="60%" style="stop-color:#ff2b4d" stop-opacity="0.1"/>
+      <stop offset="100%" style="stop-color:#ff2b4d" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowWide" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="glowMed" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="glowTight" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.1"/></filter>
+    <filter id="borderGlowWide" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="borderGlowTight" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.3"/></filter>
+  </defs>
+
+  <!-- Plaque -->
+  <rect x="0" y="0" width="140" height="140" rx="28" fill="url(#plaque)"/>
+
+  <!-- Ambient light spill (red) -->
+  <circle cx="70" cy="70" r="58" fill="url(#ambient)"/>
+
+  <!-- Neon border glow stack (red tube outline) -->
+  <rect x="6" y="6" width="128" height="128" rx="22" fill="none" stroke="#ff2b4d" stroke-width="6" filter="url(#borderGlowWide)" opacity="0.7"/>
+  <rect x="6" y="6" width="128" height="128" rx="22" fill="none" stroke="#ff3b3b" stroke-width="3.2" filter="url(#borderGlowTight)"/>
+  <rect x="6" y="6" width="128" height="128" rx="22" fill="none" stroke="#ff6b6b" stroke-width="1.6"/>
+
+  <!-- Neon tube R glow stack — red throughout, no white core -->
+  <text x="70" y="70" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="98"
+        fill="#ff2b4d" filter="url(#glowWide)" opacity="0.75">R</text>
+  <text x="70" y="70" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="98"
+        fill="#ff3b3b" filter="url(#glowMed)" opacity="0.9">R</text>
+  <text x="70" y="70" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="98"
+        fill="#ff5050" filter="url(#glowTight)">R</text>
+  <!-- Bright red core (kept red, not white) with crisp tube-highlight edge -->
+  <text x="70" y="70" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="98"
+        fill="#ff6b6b" stroke="#ff9a9a" stroke-width="0.7">R</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 64" width="472" height="128" role="img" aria-label="레드랭크 Redrank 로고">
+  <defs>
+    <linearGradient id="rrw-g" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#B00020"/>
+      <stop offset="1" stop-color="#FF4155"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(14 16)">
+    <rect x="3.5" y="19" width="5.4" height="9.5" rx="1.6" fill="#FF4155" opacity="0.4"/>
+    <rect x="11.5" y="13" width="5.4" height="15.5" rx="1.6" fill="#FF4155" opacity="0.7"/>
+    <rect x="19.5" y="7" width="5.4" height="21.5" rx="1.6" fill="url(#rrw-g)"/>
+    <path d="M4.5 15.5 L14 9.5 L19 12.5 L26.5 4.5" fill="none" stroke="#FFD9DC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21.5 3.5 L27.5 3.5 L27.5 9.5" fill="none" stroke="#FFD9DC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="58" y="41" font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif" font-size="29" font-weight="700" fill="#F7F8FA">레드랭크</text>
+  <text x="182" y="41" font-family="Pretendard, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#F7F8FA" opacity="0.45">SEO</text>
+</svg>

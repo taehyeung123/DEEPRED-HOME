@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="512" height="512" role="img" aria-label="레드랭크 파티클 실루엣">
+  <!-- 파티클 샘플링 전용: 투명 배경 위 네온 프레임 + R -->
+  <rect x="6" y="6" width="128" height="128" rx="22" fill="none" stroke="#ff3b3b" stroke-width="5"/>
+  <text x="70" y="70" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="98"
+        fill="#ff3b3b">R</text>
+</svg>

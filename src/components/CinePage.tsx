@@ -178,11 +178,12 @@ export default function CinePage() {
         letters.forEach((l) => l.classList.remove("lit"));
         word?.classList.add("red");
         gsap.set(q("[data-flash]"), { opacity: 0 });
-        gsap.to(q("[data-intro-tag], [data-scroll-hint], [data-hud]"), {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.5,
-        });
+        // 힌트는 아직 최상단일 때만 — 이미 스크롤해 내려갔다면 켜지 않는다
+        const targets =
+          cine.progress < 0.02
+            ? "[data-intro-tag], [data-scroll-hint], [data-hud]"
+            : "[data-intro-tag], [data-hud]";
+        gsap.to(q(targets), { autoAlpha: 1, y: 0, duration: 0.5 });
       }
       document.body.style.overflow = "";
       lenis.start();
@@ -291,6 +292,8 @@ export default function CinePage() {
       .fromTo(cine, { cloudPart: 0 }, { cloudPart: 1.3, duration: 12, immediateRender: false }, 1.5)
       .to(q("[data-intro-screen]"), { autoAlpha: 0, scale: 1.55, duration: 5, ease: "power2.in" }, 0)
       .fromTo(q("[data-scroll-hint]"), { autoAlpha: 1 }, { autoAlpha: 0, duration: 1.5, immediateRender: false }, 0)
+      // 인트로 완주 타이밍과의 레이스 방지: 다이브 이후엔 힌트 강제 숨김
+      .set(q("[data-scroll-hint]"), { autoAlpha: 0 }, 3.2)
       .fromTo(q("[data-vignette]"), { opacity: 0 }, { opacity: 0.8, duration: 6, immediateRender: false }, 2)
       .to(q("[data-vignette]"), { opacity: 0, duration: 6 }, 12)
       .call(() => { if (fwd()) audio.whoosh(1.2); }, undefined, 1.2)

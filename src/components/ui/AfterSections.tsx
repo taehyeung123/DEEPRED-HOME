@@ -65,7 +65,7 @@ export default function AfterSections() {
               <div className="metric-cap">(주)딥레드 법인 설립</div>
             </div>
             <div className="metric">
-              <div className="metric-num">10<small>×</small></div>
+              <div className="metric-num">10<small>배</small></div>
               <div className="metric-cap">목표 콘텐츠 운영 효율</div>
             </div>
           </div>

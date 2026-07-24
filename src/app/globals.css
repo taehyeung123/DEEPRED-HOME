@@ -105,15 +105,15 @@ body {
 
 @keyframes grain {
   0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
+  10% { transform: translate(-3%, -6%); }
+  20% { transform: translate(-9%, 3%); }
+  30% { transform: translate(4%, -9%); }
+  40% { transform: translate(-3%, 9%); }
+  50% { transform: translate(-9%, 6%); }
+  60% { transform: translate(9%, 0%); }
+  70% { transform: translate(0%, 8%); }
+  80% { transform: translate(2%, 10%); }
+  90% { transform: translate(-6%, 6%); }
 }
 
 /* ---------- preloader ---------- */
@@ -776,47 +776,88 @@ body {
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
   margin-top: 54px;
+  counter-reset: metric;
 }
 
 .metric {
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 28px 26px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), transparent 60%);
+  counter-increment: metric;
+  border: 1px solid rgba(242, 243, 247, 0.13);
+  border-radius: 20px;
+  padding: 30px 28px 26px;
   position: relative;
   overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012) 40%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(130% 100% at 88% -12%, rgba(232, 16, 46, 0.16), transparent 58%),
+    #0b0b13;
+  box-shadow:
+    0 18px 44px -20px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s, box-shadow 0.35s;
 }
 
+.metric:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 16, 46, 0.45);
+  box-shadow:
+    0 24px 60px -20px rgba(0, 0, 0, 0.9),
+    0 0 44px -14px rgba(232, 16, 46, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 우상단 인덱스 넘버링 */
 .metric::after {
+  content: "0" counter(metric);
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: var(--font-mono2), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: rgba(242, 243, 247, 0.32);
+}
+
+/* 하단 레드 언더글로우 라인 */
+.metric::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 24px;
+  right: 24px;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--red-hot), transparent);
-  opacity: 0.7;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 16, 46, 0.65), transparent);
+  opacity: 0.55;
+  transition: opacity 0.35s;
+}
+
+.metric:hover::before {
+  opacity: 1;
 }
 
 .metric-num {
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(34px, 3.6vw, 48px);
+  font-size: clamp(36px, 3.8vw, 52px);
   letter-spacing: 0.02em;
   color: var(--fg);
+  line-height: 1.05;
 }
 
 .metric-num small {
-  font-size: 0.5em;
+  font-size: 0.44em;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 800;
   color: var(--red-hot);
-  margin-left: 2px;
+  margin-left: 7px;
+  letter-spacing: 0.06em;
+  vertical-align: 0.14em;
 }
 
 .metric-cap {
-  margin-top: 10px;
-  font-size: 13px;
+  margin-top: 12px;
+  font-size: 13.5px;
   color: var(--dim);
   letter-spacing: 0.04em;
 }
